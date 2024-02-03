@@ -32,6 +32,9 @@ This Marks Calculator is a user-friendly tool designed for students to easily ca
 
 ## Demo
 
+![image](https://github.com/alokchoudhary05/Marks-Calculator/assets/148992523/c5f43c7a-01a5-4be8-a8e4-1cfde30a4369)
+---
+![image](https://github.com/alokchoudhary05/Marks-Calculator/assets/148992523/fe0538ad-fcaa-4472-81c3-55028783cb7e)
 
 
 ## Technologies Used
