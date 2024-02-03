@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #2196F3, #FF5722);
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+            transition: background 0.5s;
+        }
+
+        h1 {
+            margin: 50px 0 20px;
+            font-size: 2em;
+        }
+
+        form {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 15px;
+            width: calc(100% - 16px);
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        #interactive-features {
+            margin-top: 30px;
+            transition: transform 0.5s;
+        }
+
+        img {
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        #dynamic-message {
+            color: #4caf50;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: color 0.5s;
+        }
+
+        #change-background-button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        #change-background-button:hover {
+            background-color: #ac13ac;
+        }
+
+        #quote-container {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .quote-card {
+            background-color: rgba(245, 70, 6, 0.9);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            max-width: 300px;
+            box-shadow: 0 0 10px rgba(217, 9, 9, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Marks Calculator</h1>
+
+    <form id="marks-form">
+        <label for="math">Math:</label>
+        <input type="number" id="math" name="math" required><br>
+        <label for="science">Science:</label>
+        <input type="number" id="science" name="science" required><br>
+        <label for="history">History:</label>
+        <input type="number" id="history" name="history" required><br>
+        <button type="button" onclick="calculateMarks()">Calculate Marks</button>
+    </form>
+
+    <p id="result"></p>
+
+    <div id="interactive-features">
+        <img src="https://placekitten.com/200/200" alt="Cute Kitten 1">
+        <img src="https://placekitten.com/201/201" alt="Cute Kitten 2">
+        <img src="https://placekitten.com/202/202" alt="Cute Kitten 3">
+        <p id="dynamic-message"></p>
+        <button id="change-background-button" onclick="changeBackgroundColor()">Change Background</button>
+    </div>
+
+    <div id="quote-container">
+        <div class="quote-card">
+            <p>"Success is not final, failure is not fatal: It is the courage to continue that counts." - Winston Churchill</p>
+        </div>
+        <div class="quote-card">
+            <p>"The only way to do great work is to love what you do." - Steve Jobs</p>
+        </div>
+        <div class="quote-card">
+            <p>"Believe you can and you're halfway there." - Theodore Roosevelt</p>
+        </div>
+        <div class="quote-card">
+            <p>"Your time is limited, don't waste it living someone else's life." - Steve Jobs</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateMarks() {
+            const mathMarks = parseFloat(document.getElementById("math").value);
+            const scienceMarks = parseFloat(document.getElementById("science").value);
+            const historyMarks = parseFloat(document.getElementById("history").value);
+
+            const totalMarks = mathMarks + scienceMarks + historyMarks;
+            const percentage = (totalMarks / 300) * 100;
+
+            document.getElementById("result").innerHTML = `Total Marks: ${totalMarks}<br>Percentage: ${percentage.toFixed(2)}%`;
+
+            // Display a dynamic message based on the percentage
+            const dynamicMessage = getDynamicMessage(percentage);
+            document.getElementById("dynamic-message").innerHTML = dynamicMessage;
+        }
+
+        function getDynamicMessage(percentage) {
+            if (percentage >= 80) {
+                return "Great job! You performed excellently!";
+            } else if (percentage >= 60) {
+                return "Well done! You did above average.";
+            } else {
+                return "Keep working hard! You can improve.";
+            }
+        }
+
+        function changeBackgroundColor() {
+            const body = document.body;
+            const form = document.getElementById("marks-form");
+            const button = document.querySelector("button");
+
+            const randomColor = getRandomColor();
+            
+            body.style.background = randomColor;
+            form.style.background = `rgba(255, 255, 255, 0.9)`;
+            button.style.background = `#4caf50`;
+
+            document.getElementById("dynamic-message").style.color = `#4caf50`;
+        }
+
+        function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+
+</body>
+</html>
